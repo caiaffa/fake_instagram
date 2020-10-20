@@ -45,7 +45,8 @@ defmodule FakeInstagram.MixProject do
       {:plug_cowboy, "~> 2.0"},
       {:absinthe, "~> 1.5.0"},
       {:absinthe_plug, "~> 1.5.0"},
-      {:dataloader, "~> 1.0.0"}
+      {:dataloader, "~> 1.0.0"},
+      {:faker, "~> 0.16", only: [:dev, :test]}
     ]
   end
 
