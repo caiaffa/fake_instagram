@@ -9,6 +9,16 @@ defmodule FakeInstagramWeb.Router do
     pipe_through :api
   end
 
+  scope "/api" do
+    pipe_through :api
+
+    forward "/graphql", Absinthe.Plug, schema: FakeInstagramWeb.Schema
+
+    if Mix.env() in [:dev, :test] do
+      forward "/graphiql", Absinthe.Plug.GraphiQL, schema: FakeInstagramWeb.Schema
+    end
+  end
+
   # Enables LiveDashboard only for development
   #
   # If you want to use the LiveDashboard in production, you should put
