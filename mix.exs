@@ -46,7 +46,14 @@ defmodule FakeInstagram.MixProject do
       {:absinthe, "~> 1.5.0"},
       {:absinthe_plug, "~> 1.5.0"},
       {:dataloader, "~> 1.0.0"},
-      {:faker, "~> 0.16", only: [:dev, :test]}
+      {:faker, "~> 0.16", only: [:dev, :test]},
+      {:facebook, "~> 0.24.0"},
+      {:guardian, "~> 2.0"},
+      {:ex_aws, "~> 2.1"},
+      {:ex_aws_s3, "~> 2.0"},
+      {:hackney, "~> 1.9"},
+      {:sweet_xml, "~> 0.6"},
+      {:elixir_uuid, "~> 1.2"}
     ]
   end
 

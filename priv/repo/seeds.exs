@@ -15,14 +15,13 @@ photos_list = [
   "https://freestocks.org/fs/wp-content/uploads/2016/08/timber-800x533.jpg"
 ]
 
-
 for idx <- 0..mock_photos do
   photo = %{
     image_url: Enum.at(photos_list, idx),
-    caption: Faker.Lorem.Shakespeare.hamlet,
+    caption: Faker.Lorem.Shakespeare.hamlet()
   }
 
   %Posts.Photo{}
   |> Posts.Photo.changeset(photo)
-  |> Repo.insert!
+  |> Repo.insert!()
 end

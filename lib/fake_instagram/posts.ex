@@ -101,4 +101,21 @@ defmodule FakeInstagram.Posts do
   def change_photo(%Photo{} = photo, attrs \\ %{}) do
     Photo.changeset(photo, attrs)
   end
+
+  def get_presign_url do
+    uuid = UUID.uuid4
+    bucket = "photos"
+    config = %{region: "us-east-1"}
+    query_params = [{"ContentType", "image/jpeg"}, {"ACL", "public-read"}]
+    presign_options = [virtual_host: false, query_params: query_params]
+
+    {:ok, url} = ExAws.Config.new(:s3, config)
+                 |> ExAws.S3.presigned_url(:put, bucket, "#{uuid}.jpg", presign_options)
+
+    %{upload_url: url, url: get_image_url(bucket, uuid)}
+  end
+
+  def get_image_url(bucket, uuid) do
+    "https://s3.amazonaws.com/fakeinstagram-beta/#{bucket}/#{uuid}.jpg"
+  end
 end

@@ -6,6 +6,8 @@ defmodule FakeInstagram.Posts.Photo do
     field :caption, :string
     field :image_url, :string
 
+    has_many :like_photos, FakeInstagram.Reaction.LikePhoto
+
     timestamps()
   end
 

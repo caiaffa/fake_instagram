@@ -3,10 +3,7 @@ defmodule FakeInstagramWeb.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
-  end
-
-  scope "/api", FakeInstagramWeb do
-    pipe_through :api
+    plug FakeInstagramWeb.Context
   end
 
   scope "/api" do
