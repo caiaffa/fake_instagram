@@ -28,7 +28,6 @@ defmodule FakeInstagramWeb.Context do
     case Auth.Guardian.decode_and_verify(token) do
       {:ok, claims} -> Auth.Guardian.resource_from_claims(claims)
       {:error, reason} -> {:error, reason}
-      nil -> {:error, "Unauthorized"}
     end
   end
 end

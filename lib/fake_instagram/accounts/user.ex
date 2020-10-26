@@ -10,7 +10,9 @@ defmodule FakeInstagram.Accounts.User do
     field :last_name, :string
     field :username, :string
 
+    has_many :photos, FakeInstagram.Posts.Photo
     has_many :like_photos, FakeInstagram.Reaction.LikePhoto
+    has_many :comments, FakeInstagram.Posts.Comment
 
     timestamps()
   end

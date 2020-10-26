@@ -8,6 +8,15 @@ defmodule FakeInstagram.Accounts do
 
   alias FakeInstagram.Accounts.User
 
+  def data() do
+    Dataloader.Ecto.new(FakeInstagram.Repo, query: &query/2)
+  end
+
+  def query(queryable, _params) do
+    IO.inspect [params: queryable]
+    queryable
+  end
+
   def get_user_or_create(attrs, search_params) do
     case Repo.get_by(User, Map.to_list(search_params)) do
       nil ->

@@ -12,4 +12,24 @@ defmodule FakeInstagramWeb.Resolvers.Posts do
   def presign_url(_, _, _) do
     {:ok, FakeInstagram.Posts.get_presign_url()}
   end
+
+  def create_photo(_, args, %{context: %{current_user: current_user}}) do
+    args = Map.merge(args, %{user_id: current_user.id})
+
+    with {:ok, photo} <- Posts.create_photo(args) do
+      {:ok, photo}
+    end
+  end
+
+  def create_comment(_, args, %{context: %{current_user: current_user}}) do
+    args = Map.merge(args, %{user_id: current_user.id})
+
+    with {:ok, comment} <- Posts.create_comment(args) do
+      {:ok, comment}
+    end
+  end
+
+  def get_comments(_, %{photo_id: photo_id}, _) do
+    {:ok, Posts.get_comments_for_photo(photo_id)}
+  end
 end
